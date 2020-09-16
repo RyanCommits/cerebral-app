@@ -10,6 +10,7 @@ import {
   TextInput,
   KeyboardAvoidingView,
   TouchableOpacity,
+  Platform,
 } from 'react-native';
 import {ChatEngine, CHAT_DATA_URL} from './chat';
 
@@ -63,7 +64,9 @@ const App = () => {
     <>
       <StatusBar barStyle="dark-content" />
       <SafeAreaView style={styles.container}>
-        <KeyboardAvoidingView style={styles.container} behavior="padding">
+        <KeyboardAvoidingView
+          style={styles.container}
+          behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
           <View style={styles.chatHeader}>
             <Image
               style={styles.chatProfileImage}
@@ -159,6 +162,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   textInput: {
+    textAlignVertical: 'top',
     backgroundColor: 'white',
     borderRadius: 3,
     height: 80,
